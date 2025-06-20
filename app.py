@@ -98,9 +98,9 @@ else:
         st.markdown("---")
         st.subheader("🎓 Ringkasan Skor Pilihan Ganda")
         st.markdown(f"""
-            <div style='background-color:#fff8e1; padding: 16px; border-radius: 10px; text-align: center;'>
-                <h4 style='color:#4e342e;'>🧑 Nama: <b>{st.session_state.nama}</b></h4>
-                <h5 style='color:#2e7d32;'>✅ Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h5>
+            <div style='background-color:#fff8e1; padding: 16px; border-radius: 10px; text-align: left;'>
+                <h4 style='color:#4e342e;'> Nama: <b>{st.session_state.nama}</b></h4>
+                <h5 style='color:#4e342e;'> Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h5>
                 <h3 style='color:#d84315;'>🎉 Nilai: <b>{int(skor/len(soal_pilgan)*100)}/100</b></h3>
             </div>
         """, unsafe_allow_html=True)
