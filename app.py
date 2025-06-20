@@ -6,26 +6,28 @@ st.set_page_config(page_title="🎮 Kuis Peluang - Cublak-Cublak Suweng", page_i
 # Background cokelat muda
 st.markdown("""
     <style>
-    .stApp { background-color: #ECFAE5; }
+    .stApp {
+        background-color: #FFE1E0;
+    }
     </style>
 """, unsafe_allow_html=True)
 
-# Judul
-st.title("🎮 Kuis Interaktif Peluang - Cublak-Cublak Suweng")
-st.caption("Topik: Ruang Sampel, Kejadian, dan Peluang")
+# Judul dan Caption
+st.title("🎮 Kuis Interaktif - Kegiatan 1")
+st.caption("Topik: Ruang Sampel, Kejadian, dan Peluang (Etnomatematika - Permainan Cublak-cublak Suweng")
 
-# ==========================
-# Petunjuk
+# =====================
+# Petunjuk pengerjaan
 with st.expander("📌 Petunjuk Pengerjaan", expanded=True):
     st.markdown("""
     - Masukkan nama kamu terlebih dahulu.
     - Jawab soal pilihan ganda terlebih dahulu (no. 1–5).
-    - Lalu jawab soal uraian (no. 6–7).
+    - Lanjutkan ke soal uraian (no. 6–7).
     - Tekan tombol untuk mengirim jawaban dan melihat pembahasan.
     """)
 
-# ==========================
-# Session kontrol
+# =====================
+# Session nama
 if "nama_dikunci" not in st.session_state:
     st.session_state.nama_dikunci = False
 
@@ -37,11 +39,11 @@ if not st.session_state.nama_dikunci:
             st.session_state.nama = nama
             st.session_state.nama_dikunci = True
 
-# ==========================
+# =====================
 else:
     st.success(f"Halo, {st.session_state.nama}! Selamat mengerjakan kuis berikut. 😊")
 
-    # Soal PG
+    # ========== SOAL PILIHAN GANDA ==========
     st.header("📝 Soal Pilihan Ganda")
 
     soal_pilgan = [
@@ -96,39 +98,41 @@ else:
         st.markdown("---")
         st.subheader("🎓 Ringkasan Skor Pilihan Ganda")
         st.markdown(f"""
-            <div style='background-color:#fff8e1; padding: 16px; border-radius: 10px; text-align: left;'>
+            <div style='background-color:#fff8e1; padding: 16px; border-radius: 10px; text-align: center;'>
                 <h4 style='color:#4e342e;'> Nama: <b>{st.session_state.nama}</b></h4>
                 <h5 style='color:#4e342e;'> Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h5>
                 <h3 style='color:#d84315;'>🎉 Nilai: <b>{int(skor/len(soal_pilgan)*100)}/100</b></h3>
             </div>
         """, unsafe_allow_html=True)
 
-    # Soal Uraian
+    # ========== SOAL URAIAN ==========
     st.header("📘 Soal Uraian")
 
     soal_uraian = [
         {
-            "soal": "6a. Tentukan ruang sampel dan banyaknya elemen ruang sampel dari pelemparan tiga koin sekaligus.",
-            "soal2": "6b. Tentukan kejadian A yaitu muncul paling sedikit dua angka.",
-            "pembahasan": "a. S = {AAA, AAG, AGA, AGG, GAA, GGA, GAG, GGG}, jadi n(S) = 8\nb. A = {AAA, AAG, AGA, GAA}, jadi n(A) = 4"
+            "soal": """6. Pada percobaan pelemparan tiga koin sekaligus:
+a. Tentukan ruang sampel dan banyaknya elemen ruang sampel
+b. Tentukan kejadian A yaitu muncul paling sedikit dua angka""",
+            "pembahasan": """a. Ruang sampel S = {AAA, AAG, AGA, AGG, GAA, GGA, GAG, GGG}, jadi n(S) = 8
+b. A = {AAA, AAG, AGA, GAA}, karena ini kejadian muncul minimal dua angka. Jadi n(A) = 4"""
         },
         {
-            "soal": "7a. Tentukan ruang sampel dan banyaknya elemen ruang sampel dari pelemparan dua dadu.",
-            "soal2": "7b. Tentukan kejadian A yaitu muncul angka-angka yang berjumlah 9.",
-            "pembahasan": "a. S = 36 pasangan (1,1) sampai (6,6), jadi n(S) = 36\nb. A = {(3,6), (4,5), (5,4), (6,3)}, jadi n(A) = 4"
+            "soal": """7. Pada percobaan melambungkan dua buah dadu secara bersamaan:
+a. Tentukan ruang sampel dan banyaknya elemen ruang sampel
+b. Tentukan kejadian A yaitu muncul angka-angka yang berjumlah 9""",
+            "pembahasan": """a. Ruang sampel pelemparan dua dadu = 36 kombinasi, jadi n(S) = 36
+b. A = {(3,6), (4,5), (5,4), (6,3)}, karena jumlahnya 9. Jadi n(A) = 4"""
         }
     ]
 
-    jawaban_uraian = []
     for i, soal in enumerate(soal_uraian):
         st.markdown(f"**{soal['soal']}**")
-        st.text_area("Jawaban kamu:", key=f"uraian_{i}_a")
-        st.markdown(f"**{soal['soal2']}**")
-        st.text_area("Jawaban kamu:", key=f"uraian_{i}_b")
+        st.text_area("Jawaban kamu:", key=f"uraian_{i}")
 
     if st.button("📩 Kirim Jawaban Uraian"):
         st.subheader("🔍 Pembahasan Soal Uraian")
         for i, soal in enumerate(soal_uraian):
             pembahasan_lines = soal["pembahasan"].split("\n")
-            st.markdown(f"**Soal {i+6}a - Pembahasan:** {pembahasan_lines[0]}")
-            st.markdown(f"**Soal {i+6}b - Pembahasan:** {pembahasan_lines[1]}")
+            st.markdown(f"**Pembahasan Soal {i+6}:**")
+            st.markdown(f"- {pembahasan_lines[0]}")
+            st.markdown(f"- {pembahasan_lines[1]}")
