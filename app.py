@@ -1,13 +1,13 @@
 import streamlit as st
 
 # Konfigurasi halaman
-st.set_page_config(page_title="🎮 Kuis Peluang - Cublak-Cublak Suweng", page_icon="🎮")
+st.set_page_config(page_title="🎮 Kuis Interaktif - Kegiatan 1", page_icon="🎮")
 
 # Background cokelat muda
 st.markdown("""
     <style>
     .stApp {
-        background-color: #FFE1E0;
+        background-color: #f5e8dc;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -99,8 +99,8 @@ else:
         st.subheader("🎓 Ringkasan Skor Pilihan Ganda")
         st.markdown(f"""
             <div style='background-color:#fff8e1; padding: 16px; border-radius: 10px; text-align: center;'>
-                <h4 style='color:#4e342e;'> Nama: <b>{st.session_state.nama}</b></h4>
-                <h5 style='color:#4e342e;'> Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h5>
+                <h4 style='color:#4e342e;'>🧑 Nama: <b>{st.session_state.nama}</b></h4>
+                <h5 style='color:#2e7d32;'>✅ Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h5>
                 <h3 style='color:#d84315;'>🎉 Nilai: <b>{int(skor/len(soal_pilgan)*100)}/100</b></h3>
             </div>
         """, unsafe_allow_html=True)
@@ -110,18 +110,18 @@ else:
 
     soal_uraian = [
         {
-            "soal": """6. Pada percobaan pelemparan tiga koin sekaligus:
-a. Tentukan ruang sampel dan banyaknya elemen ruang sampel
-b. Tentukan kejadian A yaitu muncul paling sedikit dua angka""",
-            "pembahasan": """a. Ruang sampel S = {AAA, AAG, AGA, AGG, GAA, GGA, GAG, GGG}, jadi n(S) = 8
-b. A = {AAA, AAG, AGA, GAA}, karena ini kejadian muncul minimal dua angka. Jadi n(A) = 4"""
+            "soal": "6. Pada percobaan pelemparan tiga koin sekaligus:\n"
+                    "a. Tentukan ruang sampel dan banyaknya elemen ruang sampel\n"
+                    "b. Tentukan kejadian A yaitu muncul paling sedikit dua angka",
+            "pembahasan": "a. Ruang sampel S = {AAA, AAG, AGA, AGG, GAA, GGA, GAG, GGG}, jadi n(S) = 8\n"
+                          "b. A = {AAA, AAG, AGA, GAA}, karena ini kejadian muncul minimal dua angka. Jadi n(A) = 4"
         },
         {
-            "soal": """7. Pada percobaan melambungkan dua buah dadu secara bersamaan:
-a. Tentukan ruang sampel dan banyaknya elemen ruang sampel
-b. Tentukan kejadian A yaitu muncul angka-angka yang berjumlah 9""",
-            "pembahasan": """a. Ruang sampel pelemparan dua dadu = 36 kombinasi, jadi n(S) = 36
-b. A = {(3,6), (4,5), (5,4), (6,3)}, karena jumlahnya 9. Jadi n(A) = 4"""
+            "soal": "7. Pada percobaan melambungkan dua buah dadu secara bersamaan:\n"
+                    "a. Tentukan ruang sampel dan banyaknya elemen ruang sampel\n"
+                    "b. Tentukan kejadian A yaitu muncul angka-angka yang berjumlah 9",
+            "pembahasan": "a. Ruang sampel pelemparan dua dadu = 36 kombinasi, jadi n(S) = 36\n"
+                          "b. A = {(3,6), (4,5), (5,4), (6,3)}, karena jumlahnya 9. Jadi n(A) = 4"
         }
     ]
 
