@@ -1,37 +1,47 @@
 import streamlit as st
 
-# Konfigurasi tampilan
+# Konfigurasi halaman
 st.set_page_config(page_title="🎮 Kuis Peluang - Cublak-Cublak Suweng", page_icon="🎮")
 
 # Background cokelat muda
 st.markdown("""
     <style>
-    .stApp {
-        background-color: #A7C1A8;
-    }
+    .stApp { background-color: #ECFAE5; }
     </style>
 """, unsafe_allow_html=True)
 
-# Judul & Caption
+# Judul
 st.title("🎮 Kuis Interaktif Peluang - Cublak-Cublak Suweng")
-st.caption("Materi: Ruang Sampel, Kejadian, dan Peluang (PG + Uraian + Pembahasan)")
+st.caption("Topik: Ruang Sampel, Kejadian, dan Peluang")
 
+# ==========================
+# Petunjuk
+with st.expander("📌 Petunjuk Pengerjaan", expanded=True):
+    st.markdown("""
+    - Masukkan nama kamu terlebih dahulu.
+    - Jawab soal pilihan ganda terlebih dahulu (no. 1–5).
+    - Lalu jawab soal uraian (no. 6–7).
+    - Tekan tombol untuk mengirim jawaban dan melihat pembahasan.
+    """)
+
+# ==========================
 # Session kontrol
 if "nama_dikunci" not in st.session_state:
     st.session_state.nama_dikunci = False
 
-# Input Nama
+# Input nama
 if not st.session_state.nama_dikunci:
     nama = st.text_input("Masukkan nama kamu:")
     if nama:
         if st.button("Mulai Kuis"):
             st.session_state.nama = nama
             st.session_state.nama_dikunci = True
-else:
-    st.success(f"Halo, {st.session_state.nama}! Yuk, kita mulai kuis interaktifnya 🎮")
 
-    # =====================
-    # Soal Pilihan Ganda
+# ==========================
+else:
+    st.success(f"Halo, {st.session_state.nama}! Selamat mengerjakan kuis berikut. 😊")
+
+    # Soal PG
     st.header("📝 Soal Pilihan Ganda")
 
     soal_pilgan = [
@@ -68,9 +78,9 @@ else:
     jawaban_pg = []
     skor = 0
 
-    for idx, soal in enumerate(soal_pilgan):
-        st.write(soal["soal"])
-        pilihan = st.radio("Pilih jawaban:", soal["opsi"], key=f"pg_{idx}")
+    for i, soal in enumerate(soal_pilgan):
+        st.markdown(f"**{soal['soal']}**")
+        pilihan = st.radio("Pilih jawaban:", soal["opsi"], key=f"pg_{i}")
         jawaban_pg.append(pilihan[0])
 
     if st.button("📨 Kirim Jawaban Pilihan Ganda"):
@@ -88,28 +98,37 @@ else:
         st.markdown(f"""
             <div style='background-color:#fff8e1; padding: 16px; border-radius: 10px; text-align: left;'>
                 <h4 style='color:#4e342e;'> Nama: <b>{st.session_state.nama}</b></h4>
-                <h5 style='color:#2e7d32;'>✅ Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h5>
+                <h5 style='color:#4e342e;'> Jawaban Benar: <b>{skor} dari {len(soal_pilgan)} soal</b></h5>
                 <h3 style='color:#d84315;'>🎉 Nilai: <b>{int(skor/len(soal_pilgan)*100)}/100</b></h3>
             </div>
         """, unsafe_allow_html=True)
 
-    # =====================
-    # Soal Uraian + Pembahasan
+    # Soal Uraian
     st.header("📘 Soal Uraian")
 
     soal_uraian = [
         {
-            "soal": "6. (Uraian) Pada percobaan pelemparan tiga koin sekaligus:\n a. Tentukan ruang sampel dan banyaknya elemen ruang sampel\n b. Tentukan kejadian A yaitu muncul paling sedikit dua angka",
-            "pembahasan": "a. Ruang sampel S = {AAA, AAG, AGA, AGG, GAA, GGA, GAG, GGG}, jadi n(S) = 8\nb. A = {AAA, AAG, AGA, GAA}, karena ini kejadian muncul minimal dua angka. Jadi n(A) = 4"
+            "soal": "6a. Tentukan ruang sampel dan banyaknya elemen ruang sampel dari pelemparan tiga koin sekaligus.",
+            "soal2": "6b. Tentukan kejadian A yaitu muncul paling sedikit dua angka.",
+            "pembahasan": "a. S = {AAA, AAG, AGA, AGG, GAA, GGA, GAG, GGG}, jadi n(S) = 8\nb. A = {AAA, AAG, AGA, GAA}, jadi n(A) = 4"
         },
         {
-            "soal": "7. (Uraian) Pada percobaan melambungkan dua buah dadu secara bersamaan:\n a. Tentukan ruang sampel dan banyaknya elemen ruang sampel\n b. Tentukan kejadian A yaitu muncul angka-angka yang berjumlah 9",
-            "pembahasan": "a. Ruang sampel pelemparan dua dadu = 36 kombinasi, jadi n(S) = 36\nb. A = {(3,6), (4,5), (5,4), (6,3)}, karena jumlahnya 9. Jadi n(A) = 4"
+            "soal": "7a. Tentukan ruang sampel dan banyaknya elemen ruang sampel dari pelemparan dua dadu.",
+            "soal2": "7b. Tentukan kejadian A yaitu muncul angka-angka yang berjumlah 9.",
+            "pembahasan": "a. S = 36 pasangan (1,1) sampai (6,6), jadi n(S) = 36\nb. A = {(3,6), (4,5), (5,4), (6,3)}, jadi n(A) = 4"
         }
     ]
 
-    for idx, soal in enumerate(soal_uraian):
+    jawaban_uraian = []
+    for i, soal in enumerate(soal_uraian):
         st.markdown(f"**{soal['soal']}**")
-        st.text_area("Jawaban kamu:", key=f"uraian_{idx}")
-        if st.button(f"💡 Tampilkan Pembahasan Soal {idx+6}"):
-            st.info(f"🔍 **Pembahasan Soal {idx+6}:**\n\n{soal['pembahasan']}")
+        st.text_area("Jawaban kamu:", key=f"uraian_{i}_a")
+        st.markdown(f"**{soal['soal2']}**")
+        st.text_area("Jawaban kamu:", key=f"uraian_{i}_b")
+
+    if st.button("📩 Kirim Jawaban Uraian"):
+        st.subheader("🔍 Pembahasan Soal Uraian")
+        for i, soal in enumerate(soal_uraian):
+            pembahasan_lines = soal["pembahasan"].split("\n")
+            st.markdown(f"**Soal {i+6}a - Pembahasan:** {pembahasan_lines[0]}")
+            st.markdown(f"**Soal {i+6}b - Pembahasan:** {pembahasan_lines[1]}")
