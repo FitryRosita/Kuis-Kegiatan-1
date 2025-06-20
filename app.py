@@ -71,8 +71,8 @@ else:
             "jawaban": "B"
         },
         {
-            "soal": "5. Manakah kejadian yang paling mungkin terjadi dalam undian bola merah, biru, kuning (4:3:2)?",
-            "opsi": ["A. Bola merah", "B. Bola biru", "C. Bola kuning", "D. Bola putih"],
+            "soal": "5. Seorang guru membuat permainan undian sederhana di kelas. Ia memasukkan 4 bola berwarna merah, 3 biru, dan 2 kuning ke dalam kotak. Setiap siswa mengambil satu bola secara acak tanpa melihat. Manakah kejadian yang paling mungkin terjadi?",
+            "opsi": ["A. kejadian terambilnya bola merah ", "B. kejadian terambilnya bola biru", "C. kejadian terambilnya bola kuning", "D. kejadian terambilnya bola putih"],
             "jawaban": "A"
         }
     ]
