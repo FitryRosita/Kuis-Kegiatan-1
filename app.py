@@ -7,7 +7,7 @@ st.set_page_config(page_title="🎮 Kuis Peluang - Cublak-Cublak Suweng", page_i
 st.markdown("""
     <style>
     .stApp {
-        background-color: #f5e8dc;
+        background-color: #A7C1A8;
     }
     </style>
 """, unsafe_allow_html=True)
