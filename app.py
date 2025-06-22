@@ -1,20 +1,20 @@
 import streamlit as st
 
 # Konfigurasi halaman
-st.set_page_config(page_title="🎮 Kuis Interaktif - Kegiatan 1", page_icon="🎮")
+st.set_page_config(page_title= "Kuis Interaktif - Kegiatan 1", page_icon="🌷")
 
 # Background cokelat muda
 st.markdown("""
     <style>
     .stApp {
-        background-color: #f5e8dc;
+        background-color: #f8f4f2;
     }
     </style>
 """, unsafe_allow_html=True)
 
 # Judul dan Caption
 st.title("🎮 Kuis Interaktif - Kegiatan 1")
-st.caption("Topik: Ruang Sampel, Kejadian, dan Peluang (Etnomatematika - Permainan Cublak-cublak Suweng")
+st.caption("Topik: Titik Sampel, Ruang Sampel, Percobaan, dan Kejadian (Etnomatematika - Permainan Cublak-cublak Suweng")
 
 # =====================
 # Petunjuk pengerjaan
@@ -41,7 +41,7 @@ if not st.session_state.nama_dikunci:
 
 # =====================
 else:
-    st.success(f"Halo, {st.session_state.nama}! Selamat mengerjakan kuis berikut. 😊")
+    st.success(f"Halo, {st.session_state.nama}! Silakan mengerjakan kuis di bawah ini. Semangat ya 🎯")
 
     # ========== SOAL PILIHAN GANDA ==========
     st.header("📝 Soal Pilihan Ganda")
@@ -106,7 +106,7 @@ else:
         """, unsafe_allow_html=True)
 
     # ========== SOAL URAIAN ==========
-    st.header("📘 Soal Uraian")
+    st.header("📝 Soal Uraian")
 
     soal_uraian = [
         {
