@@ -111,29 +111,50 @@ else:
     # Soal 6
     soal6 = """**6.** Pada percobaan pelemparan tiga koin sekaligus:
 a. Tentukan ruang sampel dan banyaknya elemen ruang sampel  
-b. Tentukan kejadian A yaitu muncul paling sedikit dua angka"""
+b. Tentukan titik sampel kejadian A yaitu muncul paling sedikit dua angka"""
     st.markdown(soal6)
     jawaban6 = st.text_area("Jawaban kamu untuk soal 6:", key="uraian_6")
     kunci_6 = ["a.", "AAA", "AAG", "AGA", "AGG", "GAA", "GGA", "GAG", "GGG", "n(S)", "n(s)", "8", "delapan", "b.", "B.", "GAA"]
 
-    if st.button("✅ Periksa Jawaban Soal 6"):
-        cocok_6 = [k for k in kunci_6 if k.lower() in jawaban6.lower()]
-        if len(cocok_6) >= 5:
-            st.success("✅ Jawaban kamu sudah mencakup banyak poin penting. Bagus!")
-        else:
-            st.warning(f"⚠️ Jawabanmu belum lengkap. Kamu hanya menyebutkan {len(cocok_6)} dari {len(kunci_6)} kata kunci.")
-
     # Soal 7
     soal7 = """**7.** Pada percobaan melambungkan dua buah dadu secara bersamaan:
 a. Tentukan ruang sampel dan banyaknya elemen ruang sampel  
-b. Tentukan kejadian A yaitu muncul angka-angka yang berjumlah 9"""
+b. Tentukan titik sampel kejadian A yaitu muncul angka-angka yang berjumlah 9"""
     st.markdown(soal7)
     jawaban7 = st.text_area("Jawaban kamu untuk soal 7:", key="uraian_7")
     kunci_7 = ["a.", "A.", "b.", "B.", "36", "tiga puluh enam", "(3,6)", "(4,5)", "(5,4)", "(6,3)", "3,6", "4,5", "5,4", "6,3"]
 
-    if st.button("✅ Periksa Jawaban Soal 7"):
-        cocok_7 = [k for k in kunci_7 if k.lower() in jawaban7.lower()]
-        if len(cocok_7) >= 5:
-            st.success("✅ Jawaban kamu sudah mencakup banyak poin penting. Bagus!")
+    if st.button("📩 Kirim Jawaban Uraian"):
+        skor_uraian = 0
+        st.subheader("🔍 Pemeriksaan Jawaban & Pembahasan")
+
+        cocok_6 = [k for k in kunci_6 if k.lower() in jawaban6.lower()]
+        st.markdown("**Soal 6:**")
+        if len(cocok_6) >= 5:
+            st.success(f"✅ Jawaban soal 6 cukup baik. ({len(cocok_6)} kata kunci terdeteksi)")
+            skor_uraian += 1
         else:
-            st.warning(f"⚠️ Jawabanmu belum lengkap. Kamu hanya menyebutkan {len(cocok_7)} dari {len(kunci_7)} kata kunci.")
+            st.warning(f"⚠️ Jawaban soal 6 kurang lengkap. ({len(cocok_6)} dari {len(kunci_6)} kata kunci)")
+        st.markdown("**Pembahasan:**\n- a. Ruang sampel S = {AAA, AAG, AGA, AGG, GAA, GGA, GAG, GGG}, jadi n(S) = 8\n- b. A = {AAA, AAG, AGA, GAA}, karena ini kejadian muncul minimal dua angka. Jadi n(A) = 4")
+
+        cocok_7 = [k for k in kunci_7 if k.lower() in jawaban7.lower()]
+        st.markdown("**Soal 7:**")
+        if len(cocok_7) >= 5:
+            st.success(f"✅ Jawaban soal 7 cukup baik. ({len(cocok_7)} kata kunci terdeteksi)")
+            skor_uraian += 1
+        else:
+            st.warning(f"⚠️ Jawaban soal 7 kurang lengkap. ({len(cocok_7)} dari {len(kunci_7)} kata kunci)")
+        st.markdown("**Pembahasan:**\n- a. Ruang sampel pelemparan dua dadu = 36 kombinasi, jadi n(S) = 36\n- b. A = {(3,6), (4,5), (5,4), (6,3)}, karena jumlahnya 9. Jadi n(A) = 4")
+
+        total_skor = skor + skor_uraian
+        total_soal = len(soal_pilgan) + 2
+
+        st.markdown("---")
+        st.subheader("🎓 Ringkasan Total Nilai Kuis")
+        st.markdown(f"""
+            <div style='background-color:#fff3e0; padding: 16px; border-radius: 10px; text-align: left;'>
+                <h4>Nama: <b>{st.session_state.nama}</b></h4>
+                <h5>Skor Total Benar: <b>{total_skor} dari {total_soal} soal</b></h5>
+                <h3 style='color:#e65100;'>🎉 Nilai Akhir: <b>{int((total_skor / total_soal) * 100)}/100</b></h3>
+            </div>
+        """, unsafe_allow_html=True)
