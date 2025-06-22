@@ -95,6 +95,8 @@ else:
             else:
                 st.error(f"Soal {i+1}: ❌ Salah. Jawaban yang benar: {kunci}")
 
+        st.session_state.skor_pg = skor
+
         st.markdown("---")
         st.subheader("🎓 Ringkasan Skor Pilihan Ganda")
         st.markdown(f"""
@@ -108,23 +110,21 @@ else:
     # ========== SOAL URAIAN ==========
     st.header("📝 Soal Uraian")
 
-    # Soal 6
     soal6 = """**6.** Pada percobaan pelemparan tiga koin sekaligus:
 a. Tentukan ruang sampel dan banyaknya elemen ruang sampel  
-b. Tentukan titik sampel kejadian A yaitu muncul paling sedikit dua angka"""
+b. Tentukan kejadian A yaitu muncul paling sedikit dua angka"""
     st.markdown(soal6)
     jawaban6 = st.text_area("Jawaban kamu untuk soal 6:", key="uraian_6")
     kunci_6 = ["a.", "AAA", "AAG", "AGA", "AGG", "GAA", "GGA", "GAG", "GGG", "n(S)", "n(s)", "8", "delapan", "b.", "B.", "GAA"]
 
-    # Soal 7
     soal7 = """**7.** Pada percobaan melambungkan dua buah dadu secara bersamaan:
 a. Tentukan ruang sampel dan banyaknya elemen ruang sampel  
-b. Tentukan titik sampel kejadian A yaitu muncul angka-angka yang berjumlah 9"""
+b. Tentukan kejadian A yaitu muncul angka-angka yang berjumlah 9"""
     st.markdown(soal7)
     jawaban7 = st.text_area("Jawaban kamu untuk soal 7:", key="uraian_7")
     kunci_7 = ["a.", "A.", "b.", "B.", "36", "tiga puluh enam", "(3,6)", "(4,5)", "(5,4)", "(6,3)", "3,6", "4,5", "5,4", "6,3"]
 
-    if st.button("📩 Kirim Jawaban Uraian"):
+    if st.button("📬 Kirim Jawaban Uraian"):
         skor_uraian = 0
         st.subheader("🔍 Pemeriksaan Jawaban & Pembahasan")
 
@@ -146,7 +146,8 @@ b. Tentukan titik sampel kejadian A yaitu muncul angka-angka yang berjumlah 9"""
             st.warning(f"⚠️ Jawaban soal 7 kurang lengkap. ({len(cocok_7)} dari {len(kunci_7)} kata kunci)")
         st.markdown("**Pembahasan:**\n- a. Ruang sampel pelemparan dua dadu = 36 kombinasi, jadi n(S) = 36\n- b. A = {(3,6), (4,5), (5,4), (6,3)}, karena jumlahnya 9. Jadi n(A) = 4")
 
-        total_skor = skor + skor_uraian
+        skor_pg = st.session_state.get("skor_pg", 0)
+        total_skor = skor_pg + skor_uraian
         total_soal = len(soal_pilgan) + 2
 
         st.markdown("---")
