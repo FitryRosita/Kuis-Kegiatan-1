@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Konfigurasi halaman
-st.set_page_config(page_title= "Kuis Interaktif - Kegiatan 1", page_icon="🌷")
+st.set_page_config(page_title= "Kuis Kegiatan 1", page_icon="🌷")
 
 # Background cokelat muda
 st.markdown("""
@@ -14,7 +14,7 @@ st.markdown("""
 
 # Judul dan Caption
 st.title("🎮 Kuis Interaktif - Kegiatan 1")
-st.caption("Topik: Titik Sampel, Ruang Sampel, Percobaan, dan Kejadian (Etnomatematika - Permainan Cublak-cublak Suweng")
+st.caption("Topik: Titik Sampel, Ruang Sampel, Percobaan, dan Kejadian (Etnomatematika - Permainan Cublak-cublak Suweng)")
 
 # =====================
 # Petunjuk pengerjaan
