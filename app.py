@@ -131,19 +131,19 @@ b. Tentukan titik sampel kejadian A yaitu muncul angka-angka yang berjumlah 9"""
         cocok_6 = [k for k in kunci_6 if k.lower() in jawaban6.lower()]
         st.markdown("**Soal 6:**")
         if len(cocok_6) >= 5:
-            st.success(f"✅ Jawaban soal 6 cukup baik. ({len(cocok_6)} kata kunci terdeteksi)")
+            st.success(f"✅ Jawaban soal nomor 6, cukup baik. ({len(cocok_6)} kata kunci terdeteksi)")
             skor_uraian += 1
         else:
-            st.warning(f"⚠️ Jawaban soal 6 kurang lengkap. ({len(cocok_6)} dari {len(kunci_6)} kata kunci)")
+            st.warning(f"⚠️ Jawaban soal nomor 6, kurang lengkap. ({len(cocok_6)} dari {len(kunci_6)} kata kunci)")
         st.markdown("**Pembahasan:**\n- a. Ruang sampel S = {AAA, AAG, AGA, AGG, GAA, GGA, GAG, GGG}, jadi n(S) = 8\n- b. A = {AAA, AAG, AGA, GAA}, karena ini kejadian muncul minimal dua angka. Jadi n(A) = 4")
 
         cocok_7 = [k for k in kunci_7 if k.lower() in jawaban7.lower()]
         st.markdown("**Soal 7:**")
         if len(cocok_7) >= 5:
-            st.success(f"✅ Jawaban soal 7 cukup baik. ({len(cocok_7)} kata kunci terdeteksi)")
+            st.success(f"✅ Jawaban soal nomor 7, cukup baik. ({len(cocok_7)} kata kunci terdeteksi)")
             skor_uraian += 1
         else:
-            st.warning(f"⚠️ Jawaban soal 7 kurang lengkap. ({len(cocok_7)} dari {len(kunci_7)} kata kunci)")
+            st.warning(f"⚠️ Jawaban soal nomor 7, kurang lengkap. ({len(cocok_7)} dari {len(kunci_7)} kata kunci)")
         st.markdown("**Pembahasan:**\n- a. Ruang sampel pelemparan dua dadu = 36 kombinasi, jadi n(S) = 36\n- b. A = {(3,6), (4,5), (5,4), (6,3)}, karena jumlahnya 9. Jadi n(A) = 4")
 
         skor_pg = st.session_state.get("skor_pg", 0)
