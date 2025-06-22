@@ -112,14 +112,14 @@ else:
 
     soal6 = """**6.** Pada percobaan pelemparan tiga koin sekaligus:
 a. Tentukan ruang sampel dan banyaknya elemen ruang sampel  
-b. Tentukan kejadian A yaitu muncul paling sedikit dua angka"""
+b. Tentukan titik sampel kejadian A yaitu muncul paling sedikit dua angka"""
     st.markdown(soal6)
     jawaban6 = st.text_area("Jawaban kamu untuk soal 6:", key="uraian_6")
     kunci_6 = ["a.", "AAA", "AAG", "AGA", "AGG", "GAA", "GGA", "GAG", "GGG", "n(S)", "n(s)", "8", "delapan", "b.", "B.", "GAA"]
 
     soal7 = """**7.** Pada percobaan melambungkan dua buah dadu secara bersamaan:
 a. Tentukan ruang sampel dan banyaknya elemen ruang sampel  
-b. Tentukan kejadian A yaitu muncul angka-angka yang berjumlah 9"""
+b. Tentukan titik sampel kejadian A yaitu muncul angka-angka yang berjumlah 9"""
     st.markdown(soal7)
     jawaban7 = st.text_area("Jawaban kamu untuk soal 7:", key="uraian_7")
     kunci_7 = ["a.", "A.", "b.", "B.", "36", "tiga puluh enam", "(3,6)", "(4,5)", "(5,4)", "(6,3)", "3,6", "4,5", "5,4", "6,3"]
